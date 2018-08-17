@@ -1,2 +1,2 @@
-# code-snippets-crud-database
-This is a collection of code snippets that I've found useful while studying CRUD database operations (SQL and NoSQL).
+# Code Snippets Crud Databases
+This is a collection of code snippets that I've found useful while studying CRUD databases operations (SQL and NoSQL).
