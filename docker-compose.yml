@@ -4,6 +4,8 @@ services:
     build: .
     depends_on:
       - mongodb
+    volumes:
+      - ./:/app
   
   mongodb:
     image: mongo:3.6
