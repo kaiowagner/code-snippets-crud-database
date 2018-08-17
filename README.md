@@ -10,7 +10,7 @@ make build
 
 ### [C++]
 ```bash
-make build-mongo-c++ && make run-mongo-c++
+make build-mongodb-c++ && make run-mongodb-c++
 ```
 
 
