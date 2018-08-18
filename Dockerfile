@@ -2,6 +2,13 @@ FROM ubuntu:16.04
 
 RUN apt-get update && apt-get -y upgrade && apt-get -y install wget
 
+# PYTHON
+RUN apt-get install -y python3-pip python3-dev \
+    && cd /usr/local/bin \
+    && ln -s /usr/bin/python3 python \
+    && pip3 install --upgrade pip
+
+# Dev Tools
 RUN apt-get -y --no-install-recommends install \
     build-essential \
     cmake \
@@ -10,7 +17,7 @@ RUN apt-get -y --no-install-recommends install \
     gcc \
     git-core \
     libsasl2-dev \
-    libssl-dev 
+    libssl-dev
 
 # Installing the MongoDB C Driver (libmongoc) 
 RUN git clone https://github.com/mongodb/mongo-c-driver.git
@@ -32,5 +39,8 @@ RUN make EP_mnmlstc_core
 RUN make && make install
 
 WORKDIR /app
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+COPY . /app
 
 CMD tail -f /dev/null

@@ -7,6 +7,8 @@ BIN = bin/
 PATH_SRC_MONGODB_CPP = databases/nosql/mongodb/cpp
 FILENAME_BIN_MONGODB_CPP = crud_mongodb_cpp
 
+# MONGODB PYTHON
+PATH_SRC_MONGODB_PYTHON = databases/nosql/mongodb/python
 
 build:
 	@docker-compose build
@@ -24,7 +26,10 @@ up:
 	@docker-compose up
 
 run-mongodb-c++:
-	docker-compose run --rm ${SERVICE_NAME} $(BIN)/$(FILENAME_BIN_MONGODB_CPP)
+	@docker-compose run --rm ${SERVICE_NAME} $(BIN)/$(FILENAME_BIN_MONGODB_CPP)
+
+run-mongodb-python:
+	@docker-compose run --rm ${SERVICE_NAME} python $(PATH_SRC_MONGODB_PYTHON)/crud.py
 
 up-silent:
 	@docker-compose up -d ${SERVICE_NAME}
