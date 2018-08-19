@@ -64,3 +64,6 @@ resources/postgres/data
 # GRPC files
 grpc_/*
 !grpc_/.gitkeep
+
+# Visual Studio
+settings.json
