@@ -9,6 +9,7 @@
 #include <mongocxx/stdx.hpp>
 #include <mongocxx/uri.hpp>
 
+using bsoncxx::from_json;
 using bsoncxx::builder::stream::close_array;
 using bsoncxx::builder::stream::close_document;
 using bsoncxx::builder::stream::document;
@@ -41,6 +42,11 @@ void create()
                                          << bsoncxx::builder::stream::finalize;
 
     bsoncxx::stdx::optional<mongocxx::result::insert_one> result = collection.insert_one(doc_value.view());
+
+    // Alternatives
+    // doc_value = bsoncxx::from_json("{\"_id\":3,\"name\":\"Palmeiras\"}");
+    // doc_value = bsoncxx::from_json("{\"name\":\"Palmeiras\"}");
+    // result = collection.insert_one(doc_value.view());
 }
 void read()
 {
@@ -67,7 +73,7 @@ void remove()
 
 // Source: http://mongodb.github.io/mongo-cxx-driver/mongocxx-v3/tutorial/
 
-int main(int, char **)
+int main()
 {
     create();
     read();
