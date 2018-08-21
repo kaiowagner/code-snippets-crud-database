@@ -54,8 +54,16 @@ void read()
                                                          << "Flamengo"
                                                          << finalize;
     bsoncxx::stdx::optional<bsoncxx::document::value> maybe_result = collection.find_one(filter);
+
     if (maybe_result)
     {
+        bsoncxx::document::value value = *maybe_result;
+        bsoncxx::document::view view = value.view();
+
+        bsoncxx::document::element element = view["name"];
+        std::string name = element.get_utf8().value.to_string();
+        cout << name << endl;
+
         std::cout << bsoncxx::to_json(*maybe_result) << "\n\n";
     }
 }
